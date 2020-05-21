@@ -72,6 +72,9 @@ func floorcgf(x: CGFloat) -> CGFloat {
 
     var activityViewController: UIActivityViewController?
 
+    /// Hide the default navigation bar
+    public var hideNavigationBar: Bool = false
+    
     /// Paging Scroll View Background Color for MediaBrowser
     public var scrollViewBackgroundColor = UIColor.black
 
@@ -759,7 +762,7 @@ func floorcgf(x: CGFloat) -> CGFloat {
 
     //MARK: - Nav Bar Appearance
     func setNavBarAppearance(animated: Bool) {
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+        navigationController?.setNavigationBarHidden(hideNavigationBar, animated: animated)
     
         if let navBar = navigationController?.navigationBar {
             navBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:navigationBarTextColor]
@@ -1658,6 +1661,10 @@ func floorcgf(x: CGFloat) -> CGFloat {
                     v.frame = captionFrame.offsetBy(dx: 0, dy: animatonOffset)
                 }
             }
+        }
+        
+        if hideNavigationBar {
+            self.navigationController?.setNavigationBarHidden(hideNavigationBar, animated: true)
         }
         
         UIView.animate(withDuration: animationDuration, animations: {
